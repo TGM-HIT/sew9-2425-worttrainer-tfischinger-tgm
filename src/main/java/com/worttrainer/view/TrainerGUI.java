@@ -9,8 +9,8 @@ import main.java.com.worttrainer.model.Wortliste;
 import main.java.com.worttrainer.model.Worttrainer;
 
 public class TrainerGUI {
-    private Wortliste wortliste;
-    private Worttrainer worttrainer;
+    Wortliste wortliste;
+    Worttrainer worttrainer;
     String antwort;
     URL url;
 

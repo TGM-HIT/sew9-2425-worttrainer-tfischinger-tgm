@@ -18,7 +18,8 @@ public class Worttrainer {
         if (this.erraten == this.anzahl) return true;
         return false;
     }
-    public void start(Wortliste liste) {
+    public void start(Wortliste liste, TrainerGUI view) {
+        this.view = view;
         this.liste = liste;
         while (true) {
                 try {
