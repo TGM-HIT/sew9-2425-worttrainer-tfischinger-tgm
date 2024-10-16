@@ -10,8 +10,8 @@ import java.util.List;
  */
 
 public class Wortliste (int anzahl) {
- //   String wort;
- //   String url;
+    String wort;
+    String url;
     Double random;
     boolean doppelt=true;
     int einträge = 0;
