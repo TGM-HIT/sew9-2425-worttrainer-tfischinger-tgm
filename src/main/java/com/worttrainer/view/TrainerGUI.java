@@ -36,19 +36,17 @@ public class TrainerGUI {
     }
 
     public String wortAbfrage(String link) {
-        boolean schleife = true;
-        while (schleife) {
+        try {
+            url = new URL(link);
 
-            try {
-                url = new URL(link);
+        } catch (MalformedURLException e) {
 
-            } catch (MalformedURLException e) {
-
-            }
-            ImageIcon icon = new ImageIcon(url);
-            JLabel bildLabel = new JLabel(icon);
-            antwort = JOptionPane.showInputDialog(null, bildLabel, "Welches Wort wird dargestellt?", JOptionPane.QUESTION_MESSAGE);
         }
+        ImageIcon icon = new ImageIcon(url);
+        icon.setImage(icon.getImage().getScaledInstance(250, 200, Image.SCALE_DEFAULT));
+        JLabel bildLabel = new JLabel(icon);
+        bildLabel.setSize(new Dimension(10, 10));
+        antwort = JOptionPane.showInputDialog(null, bildLabel, "Welches Wort wird dargestellt?", JOptionPane.QUESTION_MESSAGE);
         return antwort;
     }
-}
+    }

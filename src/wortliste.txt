@@ -1,10 +1,10 @@
-Hund
-Sonne
-Sporttasche
-Fußball
-Katze
-Tür
-Fenster
-Flasche
-Notebook
-Sessel
+Hund https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwlg-OPbpkT7zE03pRLT9SoDe0kntjdv8W_w&s
+Sonne https://www1.wdr.de/radio/wdr5/sonnenfeuer102~_v-original.jpg
+Sporttasche https://www.vkf-renzel.at/out/pictures/generated/product/1/650_650_75/r4016131-01.jpg
+Fußball https://www.vorderland.com/medien/fussball.jpg/@@images/image.jpeg
+Katze https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Hauskatze_langhaar.jpg/1200px-Hauskatze_langhaar.jpg
+Tür https://schoene-tueren.com/sites/default/files/bilder/produkte/ot03-p.jpg
+Fenster https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_wrD1qvAM_4_ca0bvLUGnGO15_TF5Y6kU-w&s
+Flasche https://upload.wikimedia.org/wikipedia/commons/e/e3/Bouteille.jpg
+Notebook https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/PDP-Highlight-Consumer-Laptop-Go-3-Platinum-001:VP1-539x440
+Sessel https://cdn.connox.at/m/100030/280976/media/yunic/Frankfurter-Stuhl/yunic-Frankfurter-Stuhl-2-Buche-geoelt.jpg

@@ -1,6 +1,7 @@
 package main.java.com.worttrainer.model;
-import main.java.com.worttrainer.*;
 import main.java.com.worttrainer.view.TrainerGUI;
+
+import java.io.IOException;
 
 //Worttrainer wird hier implementiert
 public class Worttrainer {
@@ -18,7 +19,7 @@ public class Worttrainer {
         if (this.erraten == this.anzahl) return true;
         return false;
     }
-    public void start(Wortliste liste, TrainerGUI view) {
+    public void start(Wortliste liste, TrainerGUI view) throws IOException {
         this.view = view;
         this.liste = liste;
         while (true) {
@@ -30,12 +31,15 @@ public class Worttrainer {
             }
         }
         try {
-            wortliste = liste.generieren(anzahl);
-        } catch (Exception e) {
 
+            wortliste = liste.generieren(anzahl);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     xxx: while (true) {
     for (int i = 0; i<wortliste.length; i++) {
+            richtig = false;
             aufteilen = wortliste[i].split(" ");
             wort = aufteilen[0];
             url = aufteilen[1];
@@ -45,14 +49,10 @@ public class Worttrainer {
             while (richtig == false) {
                 antwort = view.wortAbfrage(url);
 
-                switch (antwort) {
-                    case "stop":
-                        break xxx;
-                    case "eingabe":
                         if (antwort.equals(wort)) {
                             richtig = true;
                             erraten++;
-                            if (gewonnen) {
+                            if (gewonnen()) {
                                 view.gratuliere();
                                 break xxx;
                             }
@@ -67,4 +67,3 @@ public class Worttrainer {
             }
          }
      }
- }
