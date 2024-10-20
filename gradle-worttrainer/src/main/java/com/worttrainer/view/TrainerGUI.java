@@ -1,27 +1,34 @@
-package com.worttrainer;
+package main.java.com.worttrainer.view;
 
 import javax.swing.*;
 import java.awt.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class TrainerGUI {
-    private WortListe wortliste;
-    private Worttrainer worttrainer;
-    String antwort;
+import main.java.com.worttrainer.model.Wortliste;
+import main.java.com.worttrainer.model.Worttrainer;
+import main.java.com.worttrainer.persistenz.Persistenz;
 
-    public TrainerGUI(WortListe wortliste, Worttrainer worttrainer) {
+public class TrainerGUI {
+    Wortliste wortliste;
+    Worttrainer worttrainer;
+    String antwort;
+    URL url;
+    Persistenz persistenz = new Persistenz();
+
+    public TrainerGUI(Wortliste wortliste, Worttrainer worttrainer) {
         this.wortliste = wortliste;
         this.worttrainer = worttrainer;
     }
-    public int spiellaenge {
+    public int spiellaenge() {
+        int laenge;
         while (true) {
             String antwort = JOptionPane.showInputDialog(null, "Wieviele Worte sollen erraten werden?", JOptionPane.QUESTION_MESSAGE);
             try {
-                int laenge = Integer.parseInt(antwort);
+                laenge = Integer.parseInt(antwort);
                 break;
-            } catch {
-                //erneute eingabe
+            } catch(NumberFormatException e) {
+                if (antwort.equals("laden")) persistenz.laden();
             }
         }
         return laenge;
@@ -30,19 +37,18 @@ public class TrainerGUI {
         JOptionPane.showMessageDialog(null, "Glückwunsch! Sie haben alle Worte erraten");
     }
 
-    public String TrainerGUI(String url) {
-        boolean schleife = true;
-        while (schleife) {
-            URL url = new URL(url);
-            ImageIcon icon = new ImageIcon(url);
+    public String wortAbfrage(String link) {
+        try {
+            url = new URL(link);
 
-            JLabel bildLabel = new JLabel();
-            label.setSize(new Dimension(20,10));
-            label.setIcon(icon);
+        } catch (MalformedURLException e) {
 
-            antwort = JOptionPane.showInputDialog(null, bildLabel,"Welches Wort wird dargestellt?", JOptionPane.QUESTION_MESSAGE);
-
-            return antwort;
         }
+        ImageIcon icon = new ImageIcon(url);
+        icon.setImage(icon.getImage().getScaledInstance(250, 200, Image.SCALE_DEFAULT));
+        JLabel bildLabel = new JLabel(icon);
+        bildLabel.setSize(new Dimension(10, 10));
+        antwort = JOptionPane.showInputDialog(null, bildLabel, "Welches Wort wird dargestellt?", JOptionPane.QUESTION_MESSAGE);
+        return antwort;
     }
-}
+    }

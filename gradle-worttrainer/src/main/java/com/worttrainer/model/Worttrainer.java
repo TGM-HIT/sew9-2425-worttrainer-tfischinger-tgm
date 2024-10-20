@@ -1,8 +1,12 @@
-package com.worttrainer;
+package main.java.com.worttrainer.model;
+import main.java.com.worttrainer.persistenz.Persistenz;
+import main.java.com.worttrainer.view.TrainerGUI;
+
+import java.io.IOException;
 
 //Worttrainer wird hier implementiert
-public class Worttrainer(Wortliste liste) {
-    this.liste = liste;
+public class Worttrainer {
+    Wortliste liste;
     int anzahl = 0;
     int erraten = 0;
     TrainerGUI view;
@@ -10,25 +14,33 @@ public class Worttrainer(Wortliste liste) {
     String[] wortliste;
     String url;
     String wort;
-    boolean erraten = false;
-    boolean gewonnen = false;
-
-    public boolean gewonnen {
+    boolean richtig = false;
+    Persistenz persistenz = new Persistenz();
+    public boolean gewonnen() {
         if (this.erraten == this.anzahl) return true;
         return false;
     }
-    public void start() {
+    public void start(Wortliste liste, TrainerGUI view) throws IOException {
+        this.view = view;
+        this.liste = liste;
         while (true) {
                 try {
                     anzahl = view.spiellaenge();
                     break;
-                } catch {
+                } catch(Exception e) {
                     // throw exception
             }
         }
-        wortliste = liste.generieren(anzahl);
+        try {
+
+            wortliste = liste.generieren(anzahl);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     xxx: while (true) {
-    for (int i = 0; i<liste.length; i++) {
+    for (int i = 0; i<wortliste.length; i++) {
+            richtig = false;
             aufteilen = wortliste[i].split(" ");
             wort = aufteilen[0];
             url = aufteilen[1];
@@ -36,16 +48,30 @@ public class Worttrainer(Wortliste liste) {
             String antwort;
 
             while (richtig == false) {
-                antwort = TrainerView(url);
+                antwort = view.wortAbfrage(url);
+/*
+                switch(antwort) {
+                    case "speichern": {
+                        Persistenz.speichern(this.anzahl, this.erraten);
+                        break xxx;
+                    }
 
-                switch (antwort) {
-                    case "stop":
-                        super. break;
-                    case "eingabe":
-                        if (view.getEingabe().equals(wort)) {
-                            richtig == true;
+                    case "laden":
+                        Persistenz.laden();
+                        break;
+                    default:
+                        //nicht speichern oder laden.
+                }
+
+ */
+                        if (antwort.equals("speichern")) {
+                            persistenz.speichern(this.anzahl, this.erraten);
+                            break xxx;
+                }
+                        if (antwort.equals(wort)) {
+                            richtig = true;
                             erraten++;
-                            if (gewonnen) {
+                            if (gewonnen()) {
                                 view.gratuliere();
                                 break xxx;
                             }
@@ -54,10 +80,22 @@ public class Worttrainer(Wortliste liste) {
                             richtig = false;
 
                         }
-                        break;
+                       // break;
                  }
                }
             }
          }
-     }
- }
+         public int getAnzahl() {
+        return anzahl;
+         }
+         public void setAnzahl(int anzahl) {
+        this.anzahl = anzahl;
+         }
+         public int getErraten() {
+        return erraten;
+         }
+
+    public void setErraten(int erraten) {
+        this.erraten = erraten;
+    }
+}
