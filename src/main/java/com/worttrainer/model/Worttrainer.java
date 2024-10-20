@@ -61,7 +61,7 @@ public class Worttrainer {
                             richtig = false;
 
                         }
-                        break;
+                       // break;
                  }
                }
             }

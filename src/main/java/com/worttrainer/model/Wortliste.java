@@ -25,8 +25,7 @@ public class Wortliste {
     String[] liste;
     String[] auslesen;
     String filename = "C:\\Users\\tobif\\IdeaProjects\\Worttrainer\\src\\wortliste.txt";
-    Path p;
-    Scanner s;
+
 
     public String[] generieren(int anzahl) throws IOException {
         this.liste = new String[anzahl];
@@ -62,19 +61,20 @@ public class Wortliste {
         for (int i = 0; i <anzahl; i++) {
             while (doppelt) {
                 random = (int) (Math.random() * (einträge - 0) + 0);
-                for (int k = 0; k < liste.length; k++) {
+               xyy: for (int k = 0; k < liste.length; k++) {
                     if ((liste[k] != null) && (liste[k].equals(auslesen[random]))) {
 
                         doppelt = true;
-
+                        break xyy;
                     } else {
                         doppelt = false;
                     }
                 }
+              }
+            if (doppelt == false) {
+                liste[i] = auslesen[random];
+                if (i != anzahl-1) doppelt = true;
             }
-
-            liste[i] = auslesen[random];
-            doppelt = true;
         }
         return liste;
     }
