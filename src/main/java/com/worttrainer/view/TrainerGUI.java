@@ -7,12 +7,14 @@ import java.net.URL;
 
 import main.java.com.worttrainer.model.Wortliste;
 import main.java.com.worttrainer.model.Worttrainer;
+import main.java.com.worttrainer.persistenz.Persistenz;
 
 public class TrainerGUI {
     Wortliste wortliste;
     Worttrainer worttrainer;
     String antwort;
     URL url;
+    Persistenz persistenz = new Persistenz();
 
     public TrainerGUI(Wortliste wortliste, Worttrainer worttrainer) {
         this.wortliste = wortliste;
@@ -26,7 +28,7 @@ public class TrainerGUI {
                 laenge = Integer.parseInt(antwort);
                 break;
             } catch(NumberFormatException e) {
-                //erneute eingabe
+                if (antwort.equals("laden")) persistenz.laden();
             }
         }
         return laenge;

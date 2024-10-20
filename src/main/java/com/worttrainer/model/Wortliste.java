@@ -21,7 +21,7 @@ import java.util.Scanner;
 public class Wortliste {
     int random;
     boolean doppelt = true;
-    int einträge = 0;
+    public int einträge = 0;
     String[] liste;
     String[] auslesen;
     String filename = "C:\\Users\\tobif\\IdeaProjects\\Worttrainer\\src\\wortliste.txt";

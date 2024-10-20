@@ -1,4 +1,5 @@
 package main.java.com.worttrainer.model;
+import main.java.com.worttrainer.persistenz.Persistenz;
 import main.java.com.worttrainer.view.TrainerGUI;
 
 import java.io.IOException;
@@ -13,8 +14,8 @@ public class Worttrainer {
     String[] wortliste;
     String url;
     String wort;
-    boolean gewonnen = false;
     boolean richtig = false;
+    Persistenz persistenz = new Persistenz();
     public boolean gewonnen() {
         if (this.erraten == this.anzahl) return true;
         return false;
@@ -48,7 +49,25 @@ public class Worttrainer {
 
             while (richtig == false) {
                 antwort = view.wortAbfrage(url);
+/*
+                switch(antwort) {
+                    case "speichern": {
+                        Persistenz.speichern(this.anzahl, this.erraten);
+                        break xxx;
+                    }
 
+                    case "laden":
+                        Persistenz.laden();
+                        break;
+                    default:
+                        //nicht speichern oder laden.
+                }
+
+ */
+                        if (antwort.equals("speichern")) {
+                            persistenz.speichern(this.anzahl, this.erraten);
+                            break xxx;
+                }
                         if (antwort.equals(wort)) {
                             richtig = true;
                             erraten++;
@@ -66,4 +85,17 @@ public class Worttrainer {
                }
             }
          }
-     }
+         public int getAnzahl() {
+        return anzahl;
+         }
+         public void setAnzahl(int anzahl) {
+        this.anzahl = anzahl;
+         }
+         public int getErraten() {
+        return erraten;
+         }
+
+    public void setErraten(int erraten) {
+        this.erraten = erraten;
+    }
+}
